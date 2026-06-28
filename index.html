@@ -784,8 +784,14 @@
 
   // ---- gallery ----
   // 추후 실제 사진을 추가할 때는 아래 배열의 빈 문자열('') 자리에 이미지 URL만 넣어주면 됩니다.
-  const mainPhotos = ['', '', '', '', ''];           // 상단 스와이프 메인 사진 5장
-  const morePhotos = Array.from({length:25}, ()=>''); // 하단 그리드 사진 25장
+  const mainPhotos = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg', 'images/5.jpg'];
+  const morePhotos = [
+    'images/7.jpg','images/8.jpg','images/9.jpg','images/10.jpg','images/11.jpg',
+    'images/12.jpg','images/13.jpg','images/14.jpg','images/15.jpg','images/16.jpg',
+    'images/21.jpg','images/22.jpg','images/23.jpg','images/24.jpg','images/25.jpg',
+    'images/30.jpg','images/31.jpg','images/32.jpg','images/35.jpg',
+    'images/41.jpg','images/42.jpg','images/43.jpg','images/44.jpg','images/45.jpg','images/46.jpg'
+  ];
   const allPhotos = mainPhotos.concat(morePhotos);
 
   const mainRow = document.getElementById('galleryMainRow');
