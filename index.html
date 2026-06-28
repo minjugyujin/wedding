@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>민주 ♥ 규진 결혼합니다</title>
 <meta property="og:title" content="민주 ♥ 규진 결혼합니다">
 <meta property="og:description" content="2026년 9월 19일 토요일 낮 12시 · 더 베뉴지 서울, 2F 베뉴지홀">
@@ -25,7 +25,7 @@
     --line: rgba(42,82,59,0.18);
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  html,body{margin:0;padding:0; overflow-x:hidden; width:100%; touch-action:manipulation;}
   body{
     background:var(--ivory);
     color:var(--ink);
@@ -310,7 +310,7 @@
     z-index:50; flex-direction:column;
   }
   .modal-bg.open{ display:flex; }
-  .modal-img{ width:78vw; max-width:380px; height:64vh; max-height:520px; object-fit:cover; background:#DDDAD0; background-size:cover; background-position:center; border-radius:2px; }
+  .modal-img{ max-width:92vw; max-height:78vh; width:auto; height:auto; object-fit:contain; border-radius:2px; touch-action:pan-y; }
   .modal-nav{ display:flex; gap:40px; margin-top:18px; }
   .modal-nav button{ background:none; border:none; color:var(--ivory); font-size:24px; cursor:pointer; }
   .modal-close{ position:absolute; top:24px; right:24px; color:var(--ivory); font-size:22px; background:none; border:none; cursor:pointer; }
@@ -596,7 +596,7 @@
 
   <div class="modal-bg" id="modalBg">
     <button class="modal-close" id="modalClose">✕</button>
-    <div class="modal-img" id="modalImg"></div>
+    <img class="modal-img" id="modalImg" src="" alt="">
     <div class="modal-nav">
       <button id="modalPrev">‹</button>
       <button id="modalNext">›</button>
@@ -818,13 +818,23 @@
   const modalImg = document.getElementById('modalImg');
   function renderModal(){
     const url = allPhotos[modalIdx];
-    modalImg.style.backgroundImage = url ? `url('${url}')` : 'none';
+    modalImg.src = url || '';
   }
   function openModal(i){ modalIdx = i; renderModal(); modalBg.classList.add('open'); }
   document.getElementById('modalClose').addEventListener('click', ()=>modalBg.classList.remove('open'));
   document.getElementById('modalPrev').addEventListener('click', ()=>{ modalIdx = (modalIdx-1+allPhotos.length)%allPhotos.length; renderModal(); });
   document.getElementById('modalNext').addEventListener('click', ()=>{ modalIdx = (modalIdx+1)%allPhotos.length; renderModal(); });
   modalBg.addEventListener('click', (e)=>{ if(e.target === modalBg) modalBg.classList.remove('open'); });
+
+  // ---- 모달 스와이프 제스처 ----
+  let modalTouchStartX = 0;
+  modalBg.addEventListener('touchstart', (e)=>{ modalTouchStartX = e.changedTouches[0].screenX; }, {passive:true});
+  modalBg.addEventListener('touchend', (e)=>{
+    const dx = e.changedTouches[0].screenX - modalTouchStartX;
+    if(Math.abs(dx) < 40) return;
+    if(dx < 0){ modalIdx = (modalIdx+1)%allPhotos.length; } else { modalIdx = (modalIdx-1+allPhotos.length)%allPhotos.length; }
+    renderModal();
+  }, {passive:true});
 
   // ---- gallery more toggle ----
   const galleryToggle = document.getElementById('galleryToggle');
