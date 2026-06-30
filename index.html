@@ -4,8 +4,8 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>민주 ♥ 규진 결혼합니다</title>
-<meta property="og:title" content="민주 ♥ 규진 결혼합니다">
+<title>규진 그리고 민주 결혼합니다</title>
+<meta property="og:title" content="규진 그리고 민주 결혼합니다">
 <meta property="og:description" content="2026년 9월 19일 토요일 낮 12시 · 더 베뉴지 서울, 2F 베뉴지홀">
 <meta property="og:image" content="">
 <meta property="og:type" content="website">
@@ -1004,7 +1004,7 @@
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     const gcalParams = new URLSearchParams({
       action: 'TEMPLATE',
-      text: '민주 ❤ 규진 결혼식',
+      text: '규진민주 결혼식',
       dates: '20260919T120000/20260919T140000',
       location: '더 베뉴지 서울 2F 베뉴지홀',
       ctz: 'Asia/Seoul'
@@ -1014,7 +1014,7 @@
       icsBtn.removeAttribute('target');
       // iOS Safari는 data: 링크를 "직접 클릭"했을 때만 캘린더 추가 화면을 띄워줍니다.
       // (script로 location.href를 바꾸는 방식은 보안상 막혀서 먹통이 됩니다.)
-      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:민주 ❤ 규진 결혼식\nDTSTART:20260919T120000\nDTEND:20260919T140000\nLOCATION:더 베뉴지 서울 2F 베뉴지홀\nEND:VEVENT\nEND:VCALENDAR`;
+      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:규진민주 결혼식\nDTSTART:20260919T120000\nDTEND:20260919T140000\nLOCATION:더 베뉴지 서울 2F 베뉴지홀\nEND:VEVENT\nEND:VCALENDAR`;
       icsBtn.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
     } else {
       // 안드로이드/데스크탑: 평범한 링크 클릭으로 동작 (window.open 미사용 → 인앱 브라우저 차단 이슈 회피)
@@ -1182,7 +1182,7 @@
 
   // ---- 하단 공유 버튼 ----
   document.getElementById('kakaoShareBtn').addEventListener('click', ()=>{
-    if(window.Kakao && window.Kakao.Share){
+    if(window.Kakao){
       if (!window.Kakao.isInitialized()) {
         window.Kakao.init('3dd59be033ff0ff3f92200fcdd48e7ee');
       }
